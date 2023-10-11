@@ -4,7 +4,7 @@ import {getCartShipping, getCartTotal} from "../../serivice/cartService";
 import {CartTotalType, ShippingItem} from "../../types";
 import cartStore from "../../store";
 import {AxiosError, AxiosResponse} from "axios";
-import {SelectComponent} from "../form/select-component/select-component";
+import {RadioComponent} from "../form/radio-component/radio-component";
 import querystring from 'query-string'
 import {CartTotal} from "../cart-total/cart-total";
 
@@ -42,16 +42,16 @@ export class ShippingComponent {
   @Watch('items')
   @Watch('selectedShipping')
   watchMultiple(newItems: ShippingItem[] | any, oldValue: boolean, propName: string) {
-    if (newItems.length > 0 && propName === 'items') {
+    if (propName === 'items' && newItems.length > 0) {
       this.selectedShipping = newItems[0] //By Default selecting first item in shipping array
     }
 
-    if (Object.keys(newItems).length > 0 && propName === 'selectedShipping') {
+    if (propName === 'selectedShipping' && Object.keys(newItems).length > 0) {
       this.selectedShipping = newItems;
       this.fetchTotal();
     }
   }
-  
+
   fetchTotal = async () => {
     try {
       const query = querystring.stringify({
@@ -79,9 +79,9 @@ export class ShippingComponent {
   }
 
   handleSelect = (event: InputEvent) => {
-    const element = event.currentTarget as HTMLSelectElement;
+    const element = event.target as HTMLSelectElement;
     console.log(this.items, element.value)
-    this.selectedShipping = this.items.find(ship => ship.name === element.value)
+    this.selectedShipping = this.items.find(ship => ship.name === element.value) || {}
     console.log(this.selectedShipping)
   }
 
@@ -89,7 +89,7 @@ export class ShippingComponent {
     return (
       <CartLayout>
         {this.items.map(item => <div>{item.label}</div>)}
-        <SelectComponent options={this.items} onInput={this.handleSelect} selected={this.selectedShipping}/>
+        <RadioComponent options={this.items} onChange={this.handleSelect} selected={this.selectedShipping}/>
         <CartTotal data={this.totals}/>
         <br/>
         <button onClick={this.handleSubmit}>proceed</button>
