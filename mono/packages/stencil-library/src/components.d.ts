@@ -12,6 +12,9 @@ export namespace Components {
     interface CouponComponent {
         "handleCouponSubmit": Function;
     }
+    interface ShippingComponent {
+        "submitCallback": Function;
+    }
 }
 declare global {
     interface HTMLCartComponentElement extends Components.CartComponent, HTMLStencilElement {
@@ -26,9 +29,16 @@ declare global {
         prototype: HTMLCouponComponentElement;
         new (): HTMLCouponComponentElement;
     };
+    interface HTMLShippingComponentElement extends Components.ShippingComponent, HTMLStencilElement {
+    }
+    var HTMLShippingComponentElement: {
+        prototype: HTMLShippingComponentElement;
+        new (): HTMLShippingComponentElement;
+    };
     interface HTMLElementTagNameMap {
         "cart-component": HTMLCartComponentElement;
         "coupon-component": HTMLCouponComponentElement;
+        "shipping-component": HTMLShippingComponentElement;
     }
 }
 declare namespace LocalJSX {
@@ -38,9 +48,13 @@ declare namespace LocalJSX {
     interface CouponComponent {
         "handleCouponSubmit"?: Function;
     }
+    interface ShippingComponent {
+        "submitCallback"?: Function;
+    }
     interface IntrinsicElements {
         "cart-component": CartComponent;
         "coupon-component": CouponComponent;
+        "shipping-component": ShippingComponent;
     }
 }
 export { LocalJSX as JSX };
@@ -49,6 +63,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "cart-component": LocalJSX.CartComponent & JSXBase.HTMLAttributes<HTMLCartComponentElement>;
             "coupon-component": LocalJSX.CouponComponent & JSXBase.HTMLAttributes<HTMLCouponComponentElement>;
+            "shipping-component": LocalJSX.ShippingComponent & JSXBase.HTMLAttributes<HTMLShippingComponentElement>;
         }
     }
 }

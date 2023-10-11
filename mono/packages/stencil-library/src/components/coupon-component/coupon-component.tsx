@@ -1,6 +1,7 @@
 import {Component, h, Prop, State, Watch} from '@stencil/core';
 import {getCoupons} from "../../serivice/cartService";
 import {couponItem} from "../../types";
+import {InputComponent} from "../form/input-component/input-component";
 
 
 @Component({
@@ -13,13 +14,13 @@ import {couponItem} from "../../types";
 export class CouponComponent {
 
   @State() coupon: string = '';
-  @State() selectedCoupon: couponItem = {};
+  @State() selectedCoupon: Partial<couponItem> = {};
 
   @Prop() handleCouponSubmit: Function = () => {
   };
 
   checkCoupon = (coupons) => {
-    const isCoupon = coupons.find((coupon: couponItem) => coupon.name.toLowerCase() === this.coupon.toLowerCase());
+    const isCoupon = coupons.find((coupon) => coupon.name.toLowerCase() === this.coupon.toLowerCase());
 
     if (isCoupon) {
       this.selectedCoupon = isCoupon;
@@ -56,7 +57,7 @@ export class CouponComponent {
   }
 
   @Watch('selectedCoupon')
-  watchPropHandler(newItems: couponItem) {
+  watchStateHandler(newItems: couponItem) {
     const isCouponSelected = Object.keys(newItems).length > 0;
     this.handleCouponSubmit(isCouponSelected, newItems)
   }
@@ -69,16 +70,19 @@ export class CouponComponent {
       <form onSubmit={this.handleSubmit}>
 
         {!isSelectedCoupon && <div>
-          <input
-            value={this.coupon}
+          <InputComponent
             onInput={this.handleChange}
-            required/>
+            type={'text'}
+            value={this.coupon}
+            required
+          />
           <button type='submit'>add</button>
         </div>
         }
 
+
         {isSelectedCoupon && <div>
-          {this.selectedCoupon.label}
+          {this.selectedCoupon?.label}
           <button onClick={this.handleRemoveCoupon}>remove</button>
         </div>
         }

@@ -10,11 +10,29 @@ export interface cartItem {
 }
 
 export interface couponItem {
-  "id"?: string,
-  "name"?: string,
-  "label"?: string,
-  "discount"?: {
+  "id": string,
+  "name": string,
+  "label": string,
+  "discount": {
     "type": string,
     "amount": string
   }
+}
+
+export interface ShippingItem {
+  "id": string,
+  "name": string,
+  "label": string,
+  "logo": string,
+  "fees": {
+    "currency": string,
+    "amount": number
+  }
+}
+
+export interface CartTotalType {
+  "name": string,
+  "label": string,
+  "currency": string,
+  "amount": number
 }

@@ -1,9 +1,8 @@
 import {Component, h, Prop, State, Watch} from '@stencil/core';
 import {CartLayout} from "../cart-layout/cart-layout";
 import {getCartItems} from "../../serivice/cartService";
-import {LoadingComponent} from "../loading-component/loading-component";
 import {getTotal} from "../../utils/utils";
-import {cartItem, couponItem} from "../../types";
+import {cartItem} from "../../types";
 import cartStore from "../../store";
 
 @Component({
@@ -22,7 +21,7 @@ export class CartComponent {
   };
 
   @Watch('items')
-  watchPropHandler(newItems: cartItem[], /*oldItems: cartItem[]*/) {
+  watchStateHandler(newItems: cartItem[], /*oldItems: cartItem[]*/) {
     const newTotal = getTotal(newItems);
     if (newTotal > 0) {
       this.total = getTotal(newItems);
@@ -55,19 +54,13 @@ export class CartComponent {
   }
 
   render() {
-    const {loading} = cartStore;
-
-    if (loading) {
-      return <LoadingComponent/>;
-    }
-
     return (
       <CartLayout>
-        {this.items.map(item => <div>{item.label}</div>)}
+        {/*{this.items.map(item => <div>{item.label}</div>)}*/}
         {this.total}
         <coupon-component handleCouponSubmit={this.handleCouponSubmit}/>
         <br/>
-        <button onClick={this.handleSubmit}>click</button>
+        <button onClick={this.handleSubmit}>proceed</button>
       </CartLayout>
     );
   }
