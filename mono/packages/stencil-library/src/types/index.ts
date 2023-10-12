@@ -19,7 +19,7 @@ export interface couponItem {
   }
 }
 
-export interface ShippingItem {
+export interface shippingItem {
   "id": string,
   "name": string,
   "label": string,
@@ -30,7 +30,7 @@ export interface ShippingItem {
   }
 }
 
-export interface CartTotalType {
+export interface cartTotalType {
   "name": string,
   "label": string,
   "currency": string,

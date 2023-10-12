@@ -3,9 +3,8 @@ import cartStore from "../../store";
 import {LoadingComponent} from "../loading-component/loading-component";
 
 export const CartLayout = (_, children): any => {
-  const {loading} = cartStore;
 
-  if (loading) {
+  if (cartStore.isLoading) {
     return <LoadingComponent/>;
   }
 

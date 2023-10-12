@@ -2,7 +2,7 @@ import {Component, h, Prop, State, Watch} from '@stencil/core';
 import {CartLayout} from "../cart-layout/cart-layout";
 import {getCartItems} from "../../serivice/cartService";
 import {getTotal} from "../../utils/utils";
-import {cartItem} from "../../types";
+import {cartItem, couponItem} from "../../types";
 import cartStore from "../../store";
 
 @Component({
@@ -29,17 +29,17 @@ export class CartComponent {
   }
 
   componentDidLoad() {
-    cartStore.loading = true;
+    cartStore.isLoading = true;
     return getCartItems().then((res) => {
       if (res.status === 200 && res.data.data) {
         this.items = res.data.data;
 
       }
 
-      cartStore.loading = false;
+      cartStore.isLoading = false;
     }).catch((e) => {
       console.log(e);
-      cartStore.loading = false;
+      cartStore.isLoading = false;
     })
   }
 
@@ -48,9 +48,10 @@ export class CartComponent {
     this.submitCallback()
   }
 
-  handleCouponSubmit = (isCoupon: boolean, /*selectedCoupon: couponItem*/) => {
+  handleCouponSubmit = (isCoupon: boolean, selectedCoupon: couponItem) => {
     //isCoupon if coupon is applied and selectedCoupon which matches
     cartStore.isCoupon = isCoupon;
+    cartStore.selectedCoupon = selectedCoupon;
   }
 
   render() {
@@ -58,7 +59,7 @@ export class CartComponent {
       <CartLayout>
         {/*{this.items.map(item => <div>{item.label}</div>)}*/}
         {this.total}
-        <coupon-component handleCouponSubmit={this.handleCouponSubmit}/>
+        <coupon-component handleCouponSubmit={this.handleCouponSubmit} selectedCoupon={cartStore.selectedCoupon}/>
         <br/>
         <button onClick={this.handleSubmit}>proceed</button>
       </CartLayout>

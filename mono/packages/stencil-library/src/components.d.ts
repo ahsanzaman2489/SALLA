@@ -5,12 +5,15 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { couponItem } from "./types";
+export { couponItem } from "./types";
 export namespace Components {
     interface CartComponent {
         "submitCallback": Function;
     }
     interface CouponComponent {
         "handleCouponSubmit": Function;
+        "selectedCoupon": Partial<couponItem>;
     }
     interface ShippingComponent {
         "submitCallback": Function;
@@ -47,6 +50,7 @@ declare namespace LocalJSX {
     }
     interface CouponComponent {
         "handleCouponSubmit"?: Function;
+        "selectedCoupon"?: Partial<couponItem>;
     }
     interface ShippingComponent {
         "submitCallback"?: Function;

@@ -1,7 +1,7 @@
 import {h} from '@stencil/core';
-import {CartTotalType} from "../../../types";
+import {cartTotalType} from "../../../types";
 
-export const CartTotalListItem = (props: { item: CartTotalType }) => {
+export const CartTotalListItem = (props: { item: cartTotalType }) => {
   const {item} = props;
   console.log(item)
 

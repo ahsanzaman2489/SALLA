@@ -14,8 +14,7 @@ import {InputComponent} from "../form/input-component/input-component";
 export class CouponComponent {
 
   @State() coupon: string = '';
-  @State() selectedCoupon: Partial<couponItem> = {};
-
+  @Prop({mutable: true}) selectedCoupon: Partial<couponItem>;
   @Prop() handleCouponSubmit: Function = () => {
   };
 
