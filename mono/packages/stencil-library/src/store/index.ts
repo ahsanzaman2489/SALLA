@@ -8,7 +8,7 @@ export interface storeType {
   selectedShipping?: Partial<shippingItem>
 }
 
-const initialState = {
+const initialState: storeType = {
   isLoading: false,
   isCoupon: false,
   selectedCoupon: {},
