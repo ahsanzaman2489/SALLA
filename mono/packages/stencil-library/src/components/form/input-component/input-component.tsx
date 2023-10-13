@@ -1,4 +1,4 @@
-import {Component, Host, h} from '@stencil/core';
+import {h} from '@stencil/core';
 
 export const InputComponent = (props) => {
   return (

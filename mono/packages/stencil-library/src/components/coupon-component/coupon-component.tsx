@@ -79,7 +79,6 @@ export class CouponComponent {
         </div>
         }
 
-
         {isSelectedCoupon && <div>
           {this.selectedCoupon?.label}
           <button onClick={this.handleRemoveCoupon}>remove</button>

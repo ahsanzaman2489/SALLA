@@ -3,22 +3,18 @@ import {InputComponent} from "../input-component/input-component";
 
 type SelectProps = any & {
   selected: any,
-  options: any
+  item: any
 };
 
 export const RadioComponent = (props: SelectProps) => {
-  const renderOptions = (options, selected) => {
-    return options.map((option) => <span>
-      <InputComponent type='radio' value={option.name} name={'shipping'}
-                      checked={selected.name === option.name}/> {option.name}
-    </span>)
-  }
-  const {options, selected, ...rest} = props;
+  const {item, selected, ...rest} = props;
 
   return (
     <div>
       <div {...rest}>
-        {renderOptions(options, selected)}
+
+        <InputComponent type='radio' value={item.name} name={'shipping'}
+                        checked={selected.name === item.name}/> {item.name}
       </div>
     </div>
   );

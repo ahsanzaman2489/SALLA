@@ -1,9 +1,8 @@
 import {h} from '@stencil/core';
 
-export const ListComponent = (props: { data: any[], ListItem: any }) => {
-  const {data, ListItem} = props;
-  const renderListItems = (data: any[]) => data.map(item => <ListItem item={item}/>)
-  console.log(data)
+export const ListComponent = (props: any) => {
+  const {data, ListItem, ...rest} = props;
+  const renderListItems = (data) => data.map(item => <ListItem item={item} {...rest}/>)
   return (
     <ul>
       {renderListItems(data)}

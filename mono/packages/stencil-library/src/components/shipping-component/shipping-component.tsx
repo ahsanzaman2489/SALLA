@@ -2,13 +2,13 @@ import {Component, h, Prop, State, Watch} from '@stencil/core';
 import {CartLayout} from "../cart-layout/cart-layout";
 import {getCartShipping, getCartTotal} from "../../serivice/cartService";
 import {cartTotalType, shippingItem} from "../../types";
-import cartStore, {storeType} from "../../store";
+import cartStore from "../../store";
 import {AxiosError, AxiosResponse} from "axios";
 import {RadioComponent} from "../form/radio-component/radio-component";
 import querystring from 'query-string'
 import {CartTotal} from "../cart-total/cart-total";
-
-// import {CartTotal} from "../../../dist/components/cart-total";
+import {ListComponent} from "../list/list-component/list-component";
+import {ShippingListItemComponent} from "../shipping-list-item-component/shipping-list-item-component";
 
 @Component({
   tag: 'shipping-component',
@@ -22,7 +22,8 @@ export class ShippingComponent {
   @State() selectedShipping: Partial<shippingItem> = {};
   @State() totals: cartTotalType[] = []
 
-  @Prop() submitCallback: Function = () => {};
+  @Prop() submitCallback: Function = () => {
+  };
 
   componentDidLoad() {
     cartStore.isLoading = true;
@@ -43,7 +44,7 @@ export class ShippingComponent {
         coupon: cartStore.isCoupon,
         shipping: this.selectedShipping.name
       })
-      console.log(query)
+
       const res = await getCartTotal(query);
 
       if (res.status === 200 && res.data.data) {
@@ -56,17 +57,16 @@ export class ShippingComponent {
     }
   }
 
-
   @Watch('items')
   @Watch('selectedShipping')
-  watchMultiple(newItems: shippingItem[] | any, oldValue: boolean, propName: string) {
+  watchMultiple(newItems: shippingItem[] | any, _, propName: string) {
     if (propName === 'items' && newItems.length > 0) {
-      if(Object.keys(cartStore.selectedShipping).length){
+      if (Object.keys(cartStore.selectedShipping).length) {
         this.selectedShipping = cartStore.selectedShipping;
-      }else{
+      } else {
         this.selectedShipping = newItems[0]
       }
-       //By Default selecting first item in shipping array or from persisted State
+      //By Default selecting first item in shipping array or from persisted State
     }
 
     if (propName === 'selectedShipping' && Object.keys(newItems).length > 0) {
@@ -77,7 +77,6 @@ export class ShippingComponent {
   }
 
   handleSubmit = () => {
-    console.log('clicked')
     this.submitCallback()
   }
 
@@ -88,17 +87,17 @@ export class ShippingComponent {
 
   handleSelect = (event: InputEvent) => {
     const element = event.target as HTMLSelectElement;
-    console.log(this.items, element.value)
     this.selectedShipping = this.items.find(ship => ship.name === element.value) || {}
-    console.log(this.selectedShipping)
   }
 
   render() {
-    console.log(cartStore.isLoading)
     return (
       <CartLayout>
-        {this.items.map(item => <div>{item.label}</div>)}
-        <RadioComponent options={this.items} onChange={this.handleSelect} selected={this.selectedShipping}/>
+        <ListComponent data={this.items}
+                       ListItem={ShippingListItemComponent}
+                       onChange={this.handleSelect}
+                       selected={this.selectedShipping}
+        />
         <CartTotal data={this.totals}/>
         <br/>
         <button onClick={this.handleSubmit}>proceed</button>

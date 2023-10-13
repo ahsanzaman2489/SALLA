@@ -1,6 +1,7 @@
 import {createStore} from "@stencil/store";
 import {shippingItem, couponItem} from "../types";
 
+
 export interface storeType {
   isLoading: boolean,
   isCoupon: boolean,
@@ -18,13 +19,13 @@ const initialState: storeType = {
 const getState = (): storeType => {
   const persistedState = localStorage.getItem('state');
   if (persistedState) {
-    return (JSON.parse(persistedState))
+    return {...initialState, ...JSON.parse(persistedState) || {}}
   } else {
     return initialState;
   }
 }
 
-const {state, on} = createStore(getState());
+const {state, on, onChange} = createStore(getState());
 
 const persistState = (state: storeType) => {
   localStorage.setItem('state', JSON.stringify(state));
@@ -35,5 +36,6 @@ on('set', (prop, value) => {
   persistState(state)
 });
 
-
+export const onChangeHandler = onChange;
 export default state;
+

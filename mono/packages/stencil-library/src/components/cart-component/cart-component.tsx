@@ -1,9 +1,13 @@
 import {Component, h, Prop, State, Watch} from '@stencil/core';
 import {CartLayout} from "../cart-layout/cart-layout";
 import {getCartItems} from "../../serivice/cartService";
-import {getTotal} from "../../utils/utils";
+import {getItemsTotal, getTotalAfterDiscount} from "../../utils/utils";
 import {cartItem, couponItem} from "../../types";
-import cartStore from "../../store";
+import cartStore, {onChangeHandler} from "../../store";
+import {isEmpty} from 'lodash'
+import {CartTotal} from "../cart-total/cart-total";
+import {ListComponent} from "../list/list-component/list-component";
+import {CartListItemComponent} from "../cart-list-item-component/cart-list-item-component";
 
 @Component({
   tag: 'cart-component',
@@ -20,12 +24,24 @@ export class CartComponent {
   @Prop() submitCallback: Function = () => {
   };
 
-  @Watch('items')
-  watchStateHandler(newItems: cartItem[], /*oldItems: cartItem[]*/) {
-    const newTotal = getTotal(newItems);
-    if (newTotal > 0) {
-      this.total = getTotal(newItems);
+  handleTotal() {
+    const newTotal = getItemsTotal(this.items);
+    if (isEmpty(cartStore.selectedCoupon)) {
+      this.total = newTotal;
+    } else {
+      this.total = getTotalAfterDiscount(newTotal, cartStore.selectedCoupon.discount)
     }
+  }
+
+  constructor() {
+    onChangeHandler('selectedCoupon', () => {
+      this.handleTotal();
+    })
+  }
+
+  @Watch('items')
+  watchStateHandler() {
+    this.handleTotal()
   }
 
   componentDidLoad() {
@@ -33,7 +49,6 @@ export class CartComponent {
     return getCartItems().then((res) => {
       if (res.status === 200 && res.data.data) {
         this.items = res.data.data;
-
       }
 
       cartStore.isLoading = false;
@@ -44,7 +59,6 @@ export class CartComponent {
   }
 
   handleSubmit = () => {
-    console.log('clicked')
     this.submitCallback()
   }
 
@@ -57,9 +71,14 @@ export class CartComponent {
   render() {
     return (
       <CartLayout>
-        {/*{this.items.map(item => <div>{item.label}</div>)}*/}
-        {this.total}
+        <ListComponent data={this.items} ListItem={CartListItemComponent}/>
         <coupon-component handleCouponSubmit={this.handleCouponSubmit} selectedCoupon={cartStore.selectedCoupon}/>
+        <CartTotal data={[{
+          "name": "cart_total",
+          "label": "Cart Total",
+          "currency": "SAR",
+          "amount": this.total
+        }]}/>
         <br/>
         <button onClick={this.handleSubmit}>proceed</button>
       </CartLayout>
