@@ -8,10 +8,11 @@ import {isEmpty} from 'lodash'
 import {CartTotal} from "../cart-total/cart-total";
 import {ListComponent} from "../list/list-component/list-component";
 import {CartListItemComponent} from "../cart-list-item-component/cart-list-item-component";
+import logo from "../../assets/storeLogo.svg";
 
 @Component({
   tag: 'cart-component',
-  styleUrl: 'cart-component.css',
+  styleUrl: '../../cart.css',
   assetsDirs: ['assets'],
   shadow: true,
 })
@@ -70,8 +71,14 @@ export class CartComponent {
 
   render() {
     return (
-      <CartLayout>
-        <ListComponent data={this.items} ListItem={CartListItemComponent}/>
+      <CartLayout headerProps={{
+        logo: <img src={logo} alt="logo"/>,
+        page: ['store', 'cart', 'checkout'],
+        storeName: 'Sample Store'
+      }}>
+        <ListComponent data={this.items} ListItem={CartListItemComponent} listProps={{
+          class: 'p-5 bg-green-200 bg-opacity-20 rounded-lg border border-green-200 flex-col justify-start items-start gap-4 inline-flex w-[100%]'
+        }}/>
         <coupon-component handleCouponSubmit={this.handleCouponSubmit} selectedCoupon={cartStore.selectedCoupon}/>
         <CartTotal data={[{
           "name": "cart_total",

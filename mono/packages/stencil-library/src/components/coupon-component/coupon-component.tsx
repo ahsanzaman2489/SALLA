@@ -6,7 +6,7 @@ import {InputComponent} from "../form/input-component/input-component";
 
 @Component({
   tag: 'coupon-component',
-  // styleUrl: 'cart-component.css',
+  // styleUrl: 'cart.css',
   assetsDirs: ['assets'],
   shadow: true,
 })

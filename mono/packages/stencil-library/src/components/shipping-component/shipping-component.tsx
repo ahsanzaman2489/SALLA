@@ -12,7 +12,7 @@ import {ShippingListItemComponent} from "../shipping-list-item-component/shippin
 
 @Component({
   tag: 'shipping-component',
-  styleUrl: 'shipping-component.css',
+  styleUrl: '../../cart.css',
   assetsDirs: ['assets'],
   shadow: true,
 })
