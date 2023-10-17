@@ -4,11 +4,11 @@ import {getCartShipping, getCartTotal} from "../../serivice/cartService";
 import {cartTotalType, shippingItem} from "../../types";
 import cartStore from "../../store";
 import {AxiosError, AxiosResponse} from "axios";
-import {RadioComponent} from "../form/radio-component/radio-component";
 import querystring from 'query-string'
 import {CartTotal} from "../cart-total/cart-total";
 import {ListComponent} from "../list/list-component/list-component";
 import {ShippingListItemComponent} from "../shipping-list-item-component/shipping-list-item-component";
+import logo from "../../assets/storeLogo.svg";
 
 @Component({
   tag: 'shipping-component',
@@ -90,17 +90,36 @@ export class ShippingComponent {
     this.selectedShipping = this.items.find(ship => ship.name === element.value) || {}
   }
 
+  handleBack = () => {
+
+  }
+
   render() {
     return (
-      <CartLayout>
-        <ListComponent data={this.items}
-                       ListItem={ShippingListItemComponent}
-                       onChange={this.handleSelect}
-                       selected={this.selectedShipping}
+      <CartLayout
+        headerProps={{
+          logo: <img src={logo} alt="logo"/>,
+          page: ['store', 'cart', 'checkout'],
+          storeName: 'Sample Store',
+          backComponent: <div onClick={this.handleBack} class='cursor-pointer'><span>&lt;&nbsp;&nbsp;</span>shipping</div>
+        }}
+      >
+        <ListComponent
+          listProps={{
+            class: 'min-h-[300px]'
+          }}
+          data={this.items}
+          ListItem={ShippingListItemComponent}
+          onChange={this.handleSelect}
+          selected={this.selectedShipping}
         />
         <CartTotal data={this.totals}/>
         <br/>
-        <button onClick={this.handleSubmit}>proceed</button>
+
+        <div onClick={this.handleSubmit}
+             class="w-[100%] p-2.5 bg-primary rounded-md flex-col justify-center items-center gap-2.5 inline-flex">
+          <div class="text-white text-sm font-normal leading-none">Submit</div>
+        </div>
       </CartLayout>
     );
   }

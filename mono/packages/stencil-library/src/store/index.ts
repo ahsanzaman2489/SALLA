@@ -3,6 +3,7 @@ import {shippingItem, couponItem} from "../types";
 
 
 export interface storeType {
+  currency: any,
   isLoading: boolean,
   isCoupon: boolean,
   selectedCoupon: Partial<couponItem>,
@@ -10,10 +11,11 @@ export interface storeType {
 }
 
 const initialState: storeType = {
+  currency: 'SAR',
   isLoading: false,
   isCoupon: false,
   selectedCoupon: {},
-  selectedShipping: {}
+  selectedShipping: {},
 }
 
 const getState = (): storeType => {

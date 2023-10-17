@@ -15,7 +15,7 @@ export interface couponItem {
   "label": string,
   "discount": {
     "type": string,
-    "amount": string
+    "amount": number
   }
 }
 

@@ -4,11 +4,14 @@ import './cart-layout-header.css'
 interface propType {
   logo: any,
   storeName: string,
-  page: string[]
+  page: string[],
+  backComponent: any,
 }
 
 export const CartLayoutHeader = (props: propType) => {
-  const {logo, storeName, page = []} = props;
+  const {
+    logo, storeName, page = [], backComponent = 'Cart'
+  } = props;
   const renderBreadCrumbs = (page) => {
     return page.map((item, index) => {
       const isLast = index != page.length - 1
@@ -29,8 +32,8 @@ export const CartLayoutHeader = (props: propType) => {
         </div>
       </div>
       <div class='cart-header-divider my-5 flex justify-center items-center'>
-        <span class='cart-header-divider-title color-primary'>Cart</span>
-        <span class='cart-header-divider-line ml-4 rounded-md w-[100%]'></span>
+        <div class='cart-header-divider-title color-primary'>{backComponent}</div>
+        <div class='cart-header-divider-line ml-4 rounded-md w-[100%]'></div>
       </div>
     </div>
   );

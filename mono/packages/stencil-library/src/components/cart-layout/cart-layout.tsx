@@ -5,8 +5,7 @@ import {CartLayoutHeader} from "./cart-layout-header/cart-layout-header";
 
 export const CartLayout = (props, children): any => {
   return (
-
-    <div class='rounded-xl border border-transparent p-5 bg-white' {...props}>
+    <div class='container mx-auto rounded-xl border border-transparent sm:p-5 p-2.5 bg-white' {...props}>
       <CartLayoutHeader {...props.headerProps}/>
       {cartStore.isLoading ? <LoadingComponent/> : children}
     </div>

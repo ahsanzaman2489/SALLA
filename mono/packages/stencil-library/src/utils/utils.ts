@@ -8,14 +8,14 @@ export const getItemsTotal = (items: cartItem[]): number => {
   }, 0)
 }
 
-export const getTotalAfterDiscount = (total: number, discount: { type: string, amount: string | number }): number => {
-
-  if (typeof discount.amount === 'string') {
-    discount.amount = parseInt(discount.amount);
+export const getTotalAfterDiscount = (total: number, discount = {type: '', amount: 0}): number => {
+  let {amount = 0} = discount;
+  if (typeof amount === 'string') {
+    amount = parseInt(amount);
   }
 
   if (discount.type === 'percentage') {
-    return total - (total * discount.amount) / 100
+    return total - (total * amount) / 100
   }
 
   return 0

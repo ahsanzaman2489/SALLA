@@ -14,7 +14,7 @@ export const RadioComponent = (props: SelectProps) => {
       <div {...rest}>
 
         <InputComponent type='radio' value={item.name} name={'shipping'}
-                        checked={selected.name === item.name}/> {item.name}
+                        checked={selected.name === item.name}/>
       </div>
     </div>
   );

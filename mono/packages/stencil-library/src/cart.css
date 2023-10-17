@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@tailwind spacing;
 
 :host {
   --color-primary: #004D5A;
@@ -14,6 +13,9 @@
   color: var(--color-primary);
 }
 
+.bg-primary {
+  background: var(--color-primary);
+}
 
 .color-secondary {
   color: var(--color-secondary);

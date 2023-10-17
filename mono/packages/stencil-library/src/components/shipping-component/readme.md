@@ -1,4 +1,4 @@
-# cart-component
+# shipping-component
 
 
 
@@ -11,19 +11,6 @@
 | ---------------- | --------- | ----------- | ---------- | ------------- |
 | `submitCallback` | --        |             | `Function` | `() => {   }` |
 
-
-## Dependencies
-
-### Depends on
-
-- [coupon-component](../coupon-component)
-
-### Graph
-```mermaid
-graph TD;
-  cart-component --> coupon-component
-  style cart-component fill:#f9f,stroke:#333,stroke-width:4px
-```
 
 ----------------------------------------------
 

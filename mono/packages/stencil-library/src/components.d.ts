@@ -12,6 +12,8 @@ export namespace Components {
         "submitCallback": Function;
     }
     interface CouponComponent {
+        "currency": string;
+        "discountAmount": number;
         "handleCouponSubmit": Function;
         "selectedCoupon": Partial<couponItem>;
     }
@@ -49,6 +51,8 @@ declare namespace LocalJSX {
         "submitCallback"?: Function;
     }
     interface CouponComponent {
+        "currency"?: string;
+        "discountAmount"?: number;
         "handleCouponSubmit"?: Function;
         "selectedCoupon"?: Partial<couponItem>;
     }
