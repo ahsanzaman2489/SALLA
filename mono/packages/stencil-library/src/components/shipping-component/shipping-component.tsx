@@ -7,7 +7,7 @@ import {AxiosError, AxiosResponse} from "axios";
 import querystring from 'query-string'
 import {CartTotal} from "../cart-total/cart-total";
 import {ListComponent} from "../list/list-component/list-component";
-import {ShippingListItemComponent} from "../shipping-list-item-component/shipping-list-item-component";
+import {ShippingListItemComponent} from "../list/shipping-list-item-component/shipping-list-item-component";
 import logo from "../../assets/storeLogo.svg";
 
 @Component({
@@ -117,7 +117,7 @@ export class ShippingComponent {
         <br/>
 
         <div onClick={this.handleSubmit}
-             class="w-[100%] p-2.5 bg-primary rounded-md flex-col justify-center items-center gap-2.5 inline-flex">
+             class="w-[100%] p-2.5 bg-primary rounded-md flex-col justify-center items-center gap-2.5 inline-flex cursor-pointer">
           <div class="text-white text-sm font-normal leading-none">Submit</div>
         </div>
       </CartLayout>

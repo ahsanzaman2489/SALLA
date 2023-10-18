@@ -1,5 +1,5 @@
 import {h} from '@stencil/core';
-import {RadioComponent} from "../form/radio-component/radio-component";
+import {RadioComponent} from "../../form/radio-component/radio-component";
 
 export const ShippingListItemComponent = (props: any) => {
   const {item, ...rest} = props;

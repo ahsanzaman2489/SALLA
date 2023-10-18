@@ -27,7 +27,7 @@ export const CartLayoutHeader = (props: propType) => {
       <div class='flex flex-row items-center'>
         <div class='cart-header-logo'>{logo}</div>
         <div class='ml-4'>
-          <div class='cart-header-store-name color-primary'>{storeName}</div>
+          <div class='cart-header-store-name color-primary text-left'>{storeName}</div>
           <p class='cart-header-breadcrumbs'>{renderBreadCrumbs(page)}</p>
         </div>
       </div>

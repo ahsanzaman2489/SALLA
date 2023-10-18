@@ -7,6 +7,7 @@
   --color-secondary: #333;
   --color-secondary-lite: #999;
   font-family: Arial, serif;
+  line-height: initial;
 }
 
 .color-primary {
@@ -25,7 +26,6 @@
   color: var(--color-secondary-lite);
 }
 
-
 /*Cart Header*/
 .cart-header-store-name {
   font-size: 18px;
@@ -40,13 +40,13 @@
   margin-top: 2px;
 }
 
-.cart-header-divider-title{
+.cart-header-divider-title {
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
 }
 
-.cart-header-divider-line{
+.cart-header-divider-line {
   height: 2px;
   display: inline-block;
   background: var(--color-primary);

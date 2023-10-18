@@ -7,6 +7,9 @@ export const ListComponent = (props: any) => {
                                                                         totalItems={data.length}
                                                                         {...rest}/>
   )
+
+
+
   return (
     <ul {...listProps}>
       {renderListItems(data)}
