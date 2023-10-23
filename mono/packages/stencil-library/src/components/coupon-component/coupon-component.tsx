@@ -4,6 +4,9 @@ import {couponItem} from "../../types";
 import {InputComponent} from "../form/input-component/input-component";
 import couponSvg from "../../assets/coupon.svg";
 import deleteSvg from "../../assets/delete.svg";
+import spinningLoadingSvg from "../../assets/spinningLoading.svg";
+import {LoadingComponent} from "../loading-component/loading-component";
+import {SpinningLoadingComponent} from "../loading-component/spinning-loading-component";
 
 
 @Component({
@@ -16,6 +19,7 @@ import deleteSvg from "../../assets/delete.svg";
 export class CouponComponent {
 
   @State() coupon: string = '';
+  @State() isLoading: boolean = false;
   @Prop() selectedCoupon: Partial<couponItem>;
   @Prop() discountAmount: number;
   @Prop() currency: string;
@@ -41,7 +45,7 @@ export class CouponComponent {
 
   handleSubmit = async (e: any) => {
     e.preventDefault();
-
+    this.isLoading = true;
     try {
       const res = await getCoupons();
 
@@ -49,7 +53,9 @@ export class CouponComponent {
         this.checkCoupon(res.data.data);
       }
 
+      this.isLoading = false;
     } catch (e) {
+      this.isLoading = false;
       console.log(e)
     }
   }
@@ -57,6 +63,7 @@ export class CouponComponent {
   handleRemoveCoupon = (e) => {
     e.preventDefault();
     this.selectedCoupon = {};
+    this.coupon = '';
   }
 
   @Watch('selectedCoupon')
@@ -73,8 +80,11 @@ export class CouponComponent {
       <form onSubmit={this.handleSubmit}>
         {!isSelectedCoupon && <div>
           <div class="w-[100%] h-7 justify-between items-center inline-flex my-2.5 sm:my-5">
-            <div class="grow shrink basis-0 text-zinc-800 text-xs font-boldclass leading-none text-left">Have a coupon?</div>
-            <div class="w-[120px] h-7 pl-2 pr-1 py-2 bg-white rounded-md shadow-inner border border-zinc-100 border-opacity-25 justify-start items-center gap-2 inline-flex">
+            <div class="grow shrink basis-0 text-zinc-800 text-xs font-boldclass leading-none text-left">Have a
+              coupon?
+            </div>
+            <div
+              class="w-[120px] h-7 pl-2 pr-1 py-2 bg-white rounded-md shadow-inner border border-zinc-100 border-opacity-25 justify-start items-center gap-2 inline-flex">
               <div class="grow shrink basis-0 text-neutral-400 text-[10px] font-normal leading-none">
                 <InputComponent
                   onInput={this.handleChange}
@@ -83,36 +93,20 @@ export class CouponComponent {
                   required
                   class='w-[100%] outline-none'
                   placeholder='insert code'
+                  disabled={this.isLoading}
                 />
               </div>
-              <button class="w-10 h-5 p-2.5 bg-sky-900 rounded flex-col justify-center items-center gap-2.5 inline-flex" type='submit'>
-                <span class="text-white text-[10px] font-normalclass leading-none" >Apply</span>
+              <button class="w-10 h-5 p-2.5 bg-sky-900 rounded flex-col justify-center items-center gap-2.5 inline-flex"
+                      type='submit' disabled={this.isLoading}>
+                <span class="text-white text-[10px] font-normalclass leading-none">
+                 {this.isLoading ? <SpinningLoadingComponent width='10px' height='10px'/> : 'apply'} </span>
               </button>
+              <span class='text-[10px] text-red-600 cart-coupon-error'>coupon is not valid</span>
             </div>
-            {/*<div*/}
-            {/*  class="h-7 bg-white rounded-md shadow-inner border border-zinc-100 border-opacity-25 justify-start items-center gap-2 flex">*/}
-            {/*  <div class="w-[70px] grow shrink basis-0 text-neutral-400 text-[10px] font-normalclass leading-none">*/}
 
-
-            {/*    <InputComponent*/}
-            {/*      onInput={this.handleChange}*/}
-            {/*      type='text'*/}
-            {/*      value={this.coupon}*/}
-            {/*      required*/}
-            {/*      class='w-[100%] p-1 border border-transparent hover:border-green-200 focus:border-green-200 outline-none'*/}
-            {/*      placeholder='insert code'*/}
-            {/*    />*/}
-            {/*  </div>*/}
-            {/*  <div class="w-10 h-5 p-2.5 bg-sky-900 rounded flex-col justify-center items-center gap-2.5 inline-flex">*/}
-            {/*    <button class="text-white text-[10px] font-normalclass leading-none" type='submit'>Apply</button>*/}
-            {/*  </div>*/}
-            {/*</div>*/}
           </div>
-
-
         </div>
         }
-
         {isSelectedCoupon && <div>
           <div class="w-[100%] h-7 justify-between items-center inline-flex my-2.5 sm:my-5">
             <div

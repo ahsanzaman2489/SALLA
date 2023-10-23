@@ -46,9 +46,19 @@
   font-weight: 700;
 }
 
+
+
 .cart-header-divider-line {
   height: 2px;
   display: inline-block;
   background: var(--color-primary);
 }
 /*Cart Header*/
+
+
+.cart-coupon-error{
+  position: absolute;
+  left: 0;
+  bottom: -11px;
+  font-size: 9px;
+}
