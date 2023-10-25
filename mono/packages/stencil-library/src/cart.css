@@ -8,6 +8,8 @@
   --color-secondary-lite: #999;
   font-family: Arial, serif;
   line-height: initial;
+  width: 100%;
+  display: block;
 }
 
 .color-primary {
@@ -25,6 +27,7 @@
 .color-secondary-lite {
   color: var(--color-secondary-lite);
 }
+
 
 /*Cart Header*/
 .cart-header-store-name {

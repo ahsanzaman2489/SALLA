@@ -13,8 +13,9 @@ import logo from "../../assets/storeLogo.svg";
 @Component({
   tag: 'shipping-component',
   styleUrl: '../../cart.css',
-  assetsDirs: ['assets'],
   shadow: true,
+  assetsDirs: ['assets'],
+  // styles: 'shipping-component { font-size: 24px; }'
 })
 
 export class ShippingComponent {
@@ -23,6 +24,8 @@ export class ShippingComponent {
   @State() totals: cartTotalType[] = []
 
   @Prop() submitCallback: Function = () => {
+  };
+  @Prop() backCallback: Function = () => {
   };
 
   componentDidLoad() {
@@ -91,7 +94,7 @@ export class ShippingComponent {
   }
 
   handleBack = () => {
-
+    this.backCallback()
   }
 
   render() {
@@ -101,12 +104,13 @@ export class ShippingComponent {
           logo: <img src={logo} alt="logo"/>,
           page: ['store', 'cart', 'checkout'],
           storeName: 'Sample Store',
-          backComponent: <div onClick={this.handleBack} class='cursor-pointer'><span>&lt;&nbsp;&nbsp;</span>shipping</div>
+          backComponent: <div><span onClick={this.handleBack} class='cursor-pointer'>&lt;&nbsp;&nbsp;</span>shipping
+          </div>
         }}
       >
         <ListComponent
           listProps={{
-            class: 'min-h-[300px]'
+            class: 'min-h-[250px]'
           }}
           data={this.items}
           ListItem={ShippingListItemComponent}

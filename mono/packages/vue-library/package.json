@@ -1,0 +1,36 @@
+{
+  "name": "vue-library",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "ahsanzaman2489 <ahsan_zami@hotmai.com>",
+  "homepage": "https://github.com/SallaChallenges/WebComponent-Challenge-ahsanzaman2489-1063#readme",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib",
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SallaChallenges/WebComponent-Challenge-ahsanzaman2489-1063.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "build": "npm run tsc",
+    "tsc": "tsc -p . --outDir ./dist"
+  },
+  "bugs": {
+    "url": "https://github.com/SallaChallenges/WebComponent-Challenge-ahsanzaman2489-1063/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "stencil-library": "*"
+  }
+}

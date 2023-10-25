@@ -18,6 +18,7 @@ export namespace Components {
         "selectedCoupon": Partial<couponItem>;
     }
     interface ShippingComponent {
+        "backCallback": Function;
         "submitCallback": Function;
     }
 }
@@ -57,6 +58,7 @@ declare namespace LocalJSX {
         "selectedCoupon"?: Partial<couponItem>;
     }
     interface ShippingComponent {
+        "backCallback"?: Function;
         "submitCallback"?: Function;
     }
     interface IntrinsicElements {

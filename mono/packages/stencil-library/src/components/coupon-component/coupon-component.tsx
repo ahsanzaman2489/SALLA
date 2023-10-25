@@ -4,8 +4,6 @@ import {couponItem} from "../../types";
 import {InputComponent} from "../form/input-component/input-component";
 import couponSvg from "../../assets/coupon.svg";
 import deleteSvg from "../../assets/delete.svg";
-import spinningLoadingSvg from "../../assets/spinningLoading.svg";
-import {LoadingComponent} from "../loading-component/loading-component";
 import {SpinningLoadingComponent} from "../loading-component/spinning-loading-component";
 
 
@@ -20,6 +18,7 @@ export class CouponComponent {
 
   @State() coupon: string = '';
   @State() isLoading: boolean = false;
+  @State() isValidCoupon: boolean = false;
   @Prop() selectedCoupon: Partial<couponItem>;
   @Prop() discountAmount: number;
   @Prop() currency: string;
@@ -33,6 +32,8 @@ export class CouponComponent {
       this.selectedCoupon = isCoupon;
     } else {
       this.selectedCoupon = {};
+      this.isValidCoupon = true;
+      setTimeout(() => this.isValidCoupon = false, 10000)
     }
 
   }
@@ -68,6 +69,7 @@ export class CouponComponent {
 
   @Watch('selectedCoupon')
   watchStateHandler(newItems: couponItem) {
+    console.log()
     const isCouponSelected = Object.keys(newItems).length > 0;
     this.handleCouponSubmit(isCouponSelected, newItems)
   }
@@ -79,12 +81,12 @@ export class CouponComponent {
     return (
       <form onSubmit={this.handleSubmit}>
         {!isSelectedCoupon && <div>
-          <div class="w-[100%] h-7 justify-between items-center inline-flex my-2.5 sm:my-5">
+          <div class="w-[100%] h-7 justify-between items-center inline-flex my-2.5 sm:my-5 ">
             <div class="grow shrink basis-0 text-zinc-800 text-xs font-boldclass leading-none text-left">Have a
               coupon?
             </div>
             <div
-              class="w-[120px] h-7 pl-2 pr-1 py-2 bg-white rounded-md shadow-inner border border-zinc-100 border-opacity-25 justify-start items-center gap-2 inline-flex">
+              class="w-[120px] h-7 pl-2 pr-1 py-2 bg-white rounded-md shadow-inner border border-zinc-100 border-opacity-25 justify-start items-center gap-2 inline-flex relative">
               <div class="grow shrink basis-0 text-neutral-400 text-[10px] font-normal leading-none">
                 <InputComponent
                   onInput={this.handleChange}
@@ -101,7 +103,8 @@ export class CouponComponent {
                 <span class="text-white text-[10px] font-normalclass leading-none">
                  {this.isLoading ? <SpinningLoadingComponent width='10px' height='10px'/> : 'apply'} </span>
               </button>
-              <span class='text-[10px] text-red-600 cart-coupon-error'>coupon is not valid</span>
+              {this.isValidCoupon &&
+                <span class='text-[10px] text-red-600 cart-coupon-error'>coupon is not valid</span>}
             </div>
 
           </div>
@@ -114,7 +117,8 @@ export class CouponComponent {
               <div class="text-sky-900 text-xs font-normal font-['sallaicons'] leading-none">
                 <img src={couponSvg} alt=""/></div>
               <div class="text-zinc-800 text-xs font-bold leading-none">{this.selectedCoupon?.label}</div>
-              <div class="text-red-600 text-xs font-normal leading-none" onClick={this.handleRemoveCoupon}>
+              <div class="text-red-600 text-xs font-normal leading-none cursor-pointer"
+                   onClick={this.handleRemoveCoupon}>
                 <img src={deleteSvg} alt=""/>
               </div>
             </div>

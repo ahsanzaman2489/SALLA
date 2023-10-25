@@ -1,7 +1,8 @@
 import {h} from '@stencil/core';
 import {RadioComponent} from "../../form/radio-component/radio-component";
+import {shippingItem} from "../../../types";
 
-export const ShippingListItemComponent = (props: any) => {
+export const ShippingListItemComponent = (props: { item: shippingItem }) => {
   const {item, ...rest} = props;
   return (
     <div>
@@ -10,10 +11,11 @@ export const ShippingListItemComponent = (props: any) => {
           <div class="rounded-full">
             <RadioComponent item={item} {...rest}/>
           </div>
-          <img class="w-10 h-[12.53px]" src="https://via.placeholder.com/40x13" />
-          <div class="w-[184px] text-zinc-800 text-xs font-normal font-['Ping AR + LT'] leading-none uppercase">{item.name}</div>
+          <img class="w-10 h-[12.53px]" src={item.logo} alt={'logo'}/>
+          <div class="w-[184px] text-zinc-800 text-xs font-normal leading-none uppercase text-left">{item.name}</div>
         </div>
-        <div class="text-zinc-800 text-xs font-bold font-['Ping AR + LT'] leading-none">Free</div>
+        <div
+          class="text-zinc-800 text-xs font-bold leading-none">{item.fees.amount === 0 ? 'Free' : `${item.fees.currency} + ${item.fees.amount}`}</div>
       </div>
     </div>
   );

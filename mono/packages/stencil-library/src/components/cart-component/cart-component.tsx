@@ -56,17 +56,16 @@ export class CartComponent {
 
   render() {
 
-    console.log(cartStore.selectedCoupon)
     const isCoupon = !isEmpty(cartStore.selectedCoupon);
     const totalAfterDiscount = getTotalAfterDiscount(this.total, cartStore.selectedCoupon.discount);
     const finalTotal = isCoupon ? totalAfterDiscount : this.total
-    console.log(this.total, cartStore.selectedCoupon.discount)
-    console.log(getTotalAfterDiscount(this.total, cartStore.selectedCoupon.discount))
+
     return (
       <CartLayout headerProps={{
         logo: <img src={logo} alt="logo"/>,
         page: ['store', 'cart', 'checkout'],
-        storeName: 'Sample Store'
+        storeName: 'Sample Store',
+        backComponent: 'Cart'
       }}>
         <ListComponent data={this.items} ListItem={CartListItemComponent} listProps={{
           class: 'p-5 bg-green-200 bg-opacity-20 rounded-lg border border-green-200 flex-col justify-start items-start gap-4 inline-flex w-[100%]'

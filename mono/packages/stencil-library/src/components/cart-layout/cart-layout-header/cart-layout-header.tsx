@@ -1,5 +1,6 @@
 import {h} from '@stencil/core';
 import './cart-layout-header.css'
+import cartStore from "../../../store";
 
 interface propType {
   logo: any,
@@ -10,7 +11,7 @@ interface propType {
 
 export const CartLayoutHeader = (props: propType) => {
   const {
-    logo, storeName, page = [], backComponent = 'Cart'
+    logo, storeName, page = [], backComponent = ''
   } = props;
   const renderBreadCrumbs = (page) => {
     return page.map((item, index) => {
@@ -22,6 +23,7 @@ export const CartLayoutHeader = (props: propType) => {
     });
   }
 
+
   return (
     <div class='cart-header'>
       <div class='flex flex-row items-center'>
@@ -31,9 +33,12 @@ export const CartLayoutHeader = (props: propType) => {
           <p class='cart-header-breadcrumbs'>{renderBreadCrumbs(page)}</p>
         </div>
       </div>
-      <div class='cart-header-divider my-5 flex justify-center items-center'>
-        <div class='cart-header-divider-title color-primary'>{backComponent}</div>
-        <div class='cart-header-divider-line ml-4 rounded-md w-[100%]'></div>
+      <div class='cart-header-divider my-5'>
+        {!cartStore.isLoading && <div class='flex justify-center items-center'>
+          <div class='cart-header-divider-title color-primary'>{backComponent}</div>
+          <div class='cart-header-divider-line ml-4 rounded-md w-[100%]'></div>
+        </div>}
+
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import {reactOutputTarget} from '@stencil/react-output-target';
 import dotenvPlugin from 'rollup-plugin-dotenv';
 import {postcss} from "@stencil/postcss";
 import autoprefixer from "autoprefixer";
+import {vueOutputTarget} from "@stencil/vue-output-target";
 
 const purgeCss = require("@fullhuman/postcss-purgecss")({
   content: ["./src/**/*.tsx", "./src/**/*.css", "./src/index.html"],
@@ -43,6 +44,10 @@ export const config: Config = {
       componentCorePackage: 'stencil-library',
       proxiesFile: '../react-library/lib/components/stencil-generated/index.ts',
       includePolyfills: true
+    }),
+    vueOutputTarget({
+      componentCorePackage: 'stencil-library',
+      proxiesFile: '../vue-library/lib/components.ts',
     }),
   ],
   testing: {

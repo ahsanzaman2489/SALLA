@@ -34,6 +34,7 @@
     "@stencil/postcss": "^2.1.0",
     "@stencil/react-output-target": "^0.5.3",
     "@stencil/store": "^2.0.10",
+    "@stencil/vue-output-target": "^0.8.6",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.58",
     "autoprefixer": "^10.4.16",

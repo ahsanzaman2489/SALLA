@@ -7,12 +7,27 @@
 
   <script type="module" src="/build/stencil-library.esm.js"></script>
   <script nomodule src="/build/stencil-library.js"></script>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      place-items: center;
+      min-width: 320px;
+      min-height: 100vh;
+    }
+  </style>
 </head>
 <body>
 
 
-<cart-component first="Stencil" last="'Don't call me a framework' JS"></cart-component>
-<shipping-component></shipping-component>
+<!--<cart-component first="Stencil" last="'Don't call me a framework' JS"></cart-component>-->
+<div style="max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;">
+
+  <shipping-component></shipping-component>
+</div>
 
 </body>
 </html>
