@@ -3,7 +3,7 @@ import {CartComponent, ShippingComponent, defineCustomElements, applyPolyfills} 
 import {
     createBrowserRouter,
     RouterProvider,
-    useNavigate, redirect, useNavigation
+    useNavigate
 } from "react-router-dom";
 
 applyPolyfills().then(() => {
