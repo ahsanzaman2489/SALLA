@@ -26,6 +26,15 @@ export const config: Config = {
     })
   ],
   outputTargets: [
+    reactOutputTarget({
+      componentCorePackage: 'stencil-library',
+      proxiesFile: '../react-library/src/components/stencil-generated/index.ts',
+      includeDefineCustomElements: true,
+    }),
+    vueOutputTarget({
+      componentCorePackage: 'stencil-library',
+      proxiesFile: '../vue-library/lib/components.ts',
+    }),
     {
       type: 'dist',
       esmLoaderPath: '../loader',
@@ -40,15 +49,6 @@ export const config: Config = {
       type: 'www',
       serviceWorker: null, // disable service workers
     },
-    reactOutputTarget({
-      componentCorePackage: 'stencil-library',
-      proxiesFile: '../react-library/lib/components/stencil-generated/index.ts',
-      includePolyfills: true
-    }),
-    vueOutputTarget({
-      componentCorePackage: 'stencil-library',
-      proxiesFile: '../vue-library/lib/components.ts',
-    }),
   ],
   testing: {
     browserHeadless: "new",

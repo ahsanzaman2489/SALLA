@@ -26,3 +26,6 @@ export const ShippingComponent = /*@__PURE__*/ defineContainer<JSX.ShippingCompo
   'backCallback'
 ]);
 
+
+export const TestingComponent = /*@__PURE__*/ defineContainer<JSX.TestingComponent>('testing-component', undefined);
+
