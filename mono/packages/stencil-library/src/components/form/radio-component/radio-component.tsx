@@ -8,7 +8,9 @@ type SelectProps = any & {
 
 export const RadioComponent = (props: SelectProps) => {
   const {item, selected, ...rest} = props;
+  //Item is single item from the array and selected is the selected items
 
+  // render input radio component with all props;
   return (
     <div>
       <div {...rest}>

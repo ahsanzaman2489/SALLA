@@ -9,6 +9,12 @@ import { couponItem } from "./types";
 export { couponItem } from "./types";
 export namespace Components {
     interface CartComponent {
+        "headerProps": {
+    logo?: 'string'
+    storeName?: 'string'
+    backComponent?: any,
+    page?: string[]
+  };
         "submitCallback": Function;
     }
     interface CouponComponent {
@@ -19,6 +25,12 @@ export namespace Components {
     }
     interface ShippingComponent {
         "backCallback": Function;
+        "headerProps": {
+    logo?: 'string'
+    storeName?: 'string'
+    backComponent?: any,
+    page?: string[]
+  };
         "submitCallback": Function;
     }
     interface SubmitComponent {
@@ -68,6 +80,12 @@ declare global {
 }
 declare namespace LocalJSX {
     interface CartComponent {
+        "headerProps"?: {
+    logo?: 'string'
+    storeName?: 'string'
+    backComponent?: any,
+    page?: string[]
+  };
         "submitCallback"?: Function;
     }
     interface CouponComponent {
@@ -78,6 +96,12 @@ declare namespace LocalJSX {
     }
     interface ShippingComponent {
         "backCallback"?: Function;
+        "headerProps"?: {
+    logo?: 'string'
+    storeName?: 'string'
+    backComponent?: any,
+    page?: string[]
+  };
         "submitCallback"?: Function;
     }
     interface SubmitComponent {

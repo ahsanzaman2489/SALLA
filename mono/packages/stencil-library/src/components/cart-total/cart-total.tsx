@@ -8,3 +8,4 @@ export const CartTotal = ({data}: { data: cartTotalType[] }) => {
     <ListComponent data={data} ListItem={CartTotalListItem}/>
   );
 }
+/* rendering the cart total single item*/

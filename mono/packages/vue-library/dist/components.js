@@ -12,4 +12,8 @@ export const ShippingComponent = defineContainer('shipping-component', undefined
     'submitCallback',
     'backCallback'
 ]);
+export const SubmitComponent = defineContainer('submit-component', undefined, [
+    'returnToStoreHandler'
+]);
+export const TestingComponent = defineContainer('testing-component', undefined);
 //# sourceMappingURL=components.js.map

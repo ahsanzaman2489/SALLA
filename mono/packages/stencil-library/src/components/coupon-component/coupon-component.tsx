@@ -23,8 +23,9 @@ export class CouponComponent {
   @Prop() currency: string;
   @Prop() handleCouponSubmit: Function = () => {
   };
+  //handleCouponSubmit will trigger when coupon submit
 
-  checkCoupon = (coupons) => {
+  checkCoupon = (coupons: couponItem[]) => {
     const isCoupon = coupons.find((coupon) => coupon.name.toLowerCase() === this.coupon.toLowerCase());
 
     if (isCoupon) {
@@ -33,13 +34,15 @@ export class CouponComponent {
       this.selectedCoupon = {};
       this.isValidCoupon = true;
       setTimeout(() => this.isValidCoupon = false, 10000)
+      //showing message if invalid coupon and removing the message after 10 secons
     }
-
+    //checking coupon is valid or not
   }
 
   handleChange = (event: InputEvent) => {
     const element = event.currentTarget as HTMLInputElement;
     this.coupon = element.value;
+    //handling input change
   }
 
 
@@ -58,6 +61,7 @@ export class CouponComponent {
       this.isLoading = false;
       console.log(e)
     }
+    //handles submit of coupon form data and fetch and check with data from API
   }
 
   handleRemoveCoupon = (e) => {
@@ -70,6 +74,7 @@ export class CouponComponent {
   watchStateHandler(newItems: couponItem) {
     const isCouponSelected = Object.keys(newItems).length > 0;
     this.handleCouponSubmit(isCouponSelected, newItems)
+    //if selected coupon state is change , update the components accordingly
   }
 
   render() {
@@ -108,6 +113,7 @@ export class CouponComponent {
           </div>
         </div>
         }
+        {/*When there is no coupon selected show form */}
         {isSelectedCoupon && <div>
           <div class="w-[100%] h-7 justify-between items-center inline-flex my-2.5 sm:my-5">
             <div
@@ -124,7 +130,7 @@ export class CouponComponent {
           </div>
         </div>
         }
-
+        {/*else show selected coupon*/}
       </form>
     )
   }

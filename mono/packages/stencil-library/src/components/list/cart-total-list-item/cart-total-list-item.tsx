@@ -6,7 +6,7 @@ export const CartTotalListItem = (props: { item: cartTotalType }) => {
 
   if (item.name === 'discount' && item.amount === 0) {
     return null
-  }
+  }// This is for discount if amount is 0 so need to print it
 
 
   return (
