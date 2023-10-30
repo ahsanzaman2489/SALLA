@@ -31,6 +31,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@types/node": "^18.18.5",
     "stencil-library": "*"
   }
 }
