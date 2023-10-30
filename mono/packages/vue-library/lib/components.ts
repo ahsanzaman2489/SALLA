@@ -26,3 +26,11 @@ export const ShippingComponent = /*@__PURE__*/ defineContainer<JSX.ShippingCompo
   'backCallback'
 ]);
 
+
+export const SubmitComponent = /*@__PURE__*/ defineContainer<JSX.SubmitComponent>('submit-component', undefined, [
+  'returnToStoreHandler'
+]);
+
+
+export const TestingComponent = /*@__PURE__*/ defineContainer<JSX.TestingComponent>('testing-component', undefined);
+

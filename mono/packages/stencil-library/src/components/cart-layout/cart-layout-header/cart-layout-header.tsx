@@ -16,10 +16,10 @@ export const CartLayoutHeader = (props: propType) => {
   const renderBreadCrumbs = (page) => {
     return page.map((item, index) => {
       const isLast = index != page.length - 1
-      return <slot> <span
+      return <span> <span
         class={!isLast ? 'cart-header-current color-secondary' : 'underline cursor-pointer color-secondary-lite'}>{item}</span>
         {isLast &&
-          <span class='color-secondary-lite'> /</span>} </slot>;
+          <span class='color-secondary-lite'> /</span>} </span>;
     });
   }
 

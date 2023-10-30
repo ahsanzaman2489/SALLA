@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property         | Attribute | Description | Type       | Default       |
-| ---------------- | --------- | ----------- | ---------- | ------------- |
-| `submitCallback` | --        |             | `Function` | `() => {   }` |
+| Property         | Attribute | Description | Type       | Default         |
+| ---------------- | --------- | ----------- | ---------- | --------------- |
+| `submitCallback` | --        |             | `Function` | `() => {     }` |
 
 
 ## Dependencies

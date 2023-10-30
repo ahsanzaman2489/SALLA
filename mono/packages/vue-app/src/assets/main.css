@@ -17,3 +17,9 @@ body {
         display: block;
     }
 }
+
+@media (min-width: 500px) {
+    .layout {
+        width: 500px;
+    }
+}

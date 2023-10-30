@@ -6,7 +6,6 @@ import couponSvg from "../../assets/coupon.svg";
 import deleteSvg from "../../assets/delete.svg";
 import {SpinningLoadingComponent} from "../loading-component/spinning-loading-component";
 
-
 @Component({
   tag: 'coupon-component',
   styleUrl: '../../cart.css',
@@ -69,7 +68,6 @@ export class CouponComponent {
 
   @Watch('selectedCoupon')
   watchStateHandler(newItems: couponItem) {
-    console.log()
     const isCouponSelected = Object.keys(newItems).length > 0;
     this.handleCouponSubmit(isCouponSelected, newItems)
   }

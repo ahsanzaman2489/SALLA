@@ -1,3 +1,3 @@
 <template>
-  <cart-component :submitCallback="()=>$router.push(`/about`)"></cart-component>
+  <cart-component :submitCallback="()=>$router.push(`/shipping`)"></cart-component>
 </template>

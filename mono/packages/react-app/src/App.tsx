@@ -1,5 +1,5 @@
 import './App.css';
-import {CartComponent, ShippingComponent, defineCustomElements, applyPolyfills} from 'react-library';
+import {CartComponent, ShippingComponent, SubmitComponent, defineCustomElements, applyPolyfills} from 'react-library';
 import {
     createBrowserRouter,
     RouterProvider,
@@ -17,7 +17,12 @@ const CartPage = () => {
 }
 const ShippingPage = () => {
     const navigation = useNavigate();
-    return <ShippingComponent submitCallback={() => console.log('submitted')} backCallback={() => navigation('/')}/>;
+    return <ShippingComponent submitCallback={() => navigation('/submit')} backCallback={() => navigation('/')}/>;
+}
+
+const SubmitPage = () => {
+    const navigation = useNavigate();
+    return <SubmitComponent returnToStoreHandler={() => navigation('/')}/>;
 }
 
 function App() {
@@ -29,10 +34,15 @@ function App() {
             path: "/shipping",
             element: <ShippingPage/>,
         },
+
+        {
+            path: "/submit",
+            element: <SubmitPage/>,
+        },
     ]);
 
     return (
-        <div><RouterProvider router={router}/></div>
+        <div className='layout'><RouterProvider router={router}/></div>
     );
 }
 

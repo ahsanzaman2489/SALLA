@@ -21,6 +21,11 @@ export namespace Components {
         "backCallback": Function;
         "submitCallback": Function;
     }
+    interface SubmitComponent {
+        "returnToStoreHandler": any;
+    }
+    interface TestingComponent {
+    }
 }
 declare global {
     interface HTMLCartComponentElement extends Components.CartComponent, HTMLStencilElement {
@@ -41,10 +46,24 @@ declare global {
         prototype: HTMLShippingComponentElement;
         new (): HTMLShippingComponentElement;
     };
+    interface HTMLSubmitComponentElement extends Components.SubmitComponent, HTMLStencilElement {
+    }
+    var HTMLSubmitComponentElement: {
+        prototype: HTMLSubmitComponentElement;
+        new (): HTMLSubmitComponentElement;
+    };
+    interface HTMLTestingComponentElement extends Components.TestingComponent, HTMLStencilElement {
+    }
+    var HTMLTestingComponentElement: {
+        prototype: HTMLTestingComponentElement;
+        new (): HTMLTestingComponentElement;
+    };
     interface HTMLElementTagNameMap {
         "cart-component": HTMLCartComponentElement;
         "coupon-component": HTMLCouponComponentElement;
         "shipping-component": HTMLShippingComponentElement;
+        "submit-component": HTMLSubmitComponentElement;
+        "testing-component": HTMLTestingComponentElement;
     }
 }
 declare namespace LocalJSX {
@@ -61,10 +80,17 @@ declare namespace LocalJSX {
         "backCallback"?: Function;
         "submitCallback"?: Function;
     }
+    interface SubmitComponent {
+        "returnToStoreHandler"?: any;
+    }
+    interface TestingComponent {
+    }
     interface IntrinsicElements {
         "cart-component": CartComponent;
         "coupon-component": CouponComponent;
         "shipping-component": ShippingComponent;
+        "submit-component": SubmitComponent;
+        "testing-component": TestingComponent;
     }
 }
 export { LocalJSX as JSX };
@@ -74,6 +100,8 @@ declare module "@stencil/core" {
             "cart-component": LocalJSX.CartComponent & JSXBase.HTMLAttributes<HTMLCartComponentElement>;
             "coupon-component": LocalJSX.CouponComponent & JSXBase.HTMLAttributes<HTMLCouponComponentElement>;
             "shipping-component": LocalJSX.ShippingComponent & JSXBase.HTMLAttributes<HTMLShippingComponentElement>;
+            "submit-component": LocalJSX.SubmitComponent & JSXBase.HTMLAttributes<HTMLSubmitComponentElement>;
+            "testing-component": LocalJSX.TestingComponent & JSXBase.HTMLAttributes<HTMLTestingComponentElement>;
         }
     }
 }
