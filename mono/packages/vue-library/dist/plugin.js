@@ -6,4 +6,3 @@ export const ComponentLibrary = {
         });
     },
 };
-//# sourceMappingURL=plugin.js.map

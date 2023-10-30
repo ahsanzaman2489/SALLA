@@ -5,8 +5,9 @@ import { defineContainer } from './vue-component-lib/utils';
 
 import type { JSX } from 'stencil-library';
 
+import { defineCustomElements } from 'stencil-library/loader';
 
-
+defineCustomElements();
 
 export const CartComponent = /*@__PURE__*/ defineContainer<JSX.CartComponent>('cart-component', undefined, [
   'submitCallback'

@@ -22,7 +22,7 @@
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
     "build": "npm run tsc",
-    "tsc": "tsc -p . --outDir ./dist"
+    "tsc": "tsc -p ."
   },
   "bugs": {
     "url": "https://github.com/SallaChallenges/WebComponent-Challenge-ahsanzaman2489-1063/issues"
@@ -31,6 +31,13 @@
     "access": "public"
   },
   "dependencies": {
-    "stencil-library": "*"
+    "stencil-library": "../stencil-library",
+    "@types/jest": "23.3.9",
+    "@types/node": "^15.12.2",
+    "jest": "^23.0.0",
+    "jest-dom": "^3.0.2",
+    "np": "^3.1.0",
+    "rimraf": "^3.0.2",
+    "typescript": "^3.3.4000"
   }
 }
