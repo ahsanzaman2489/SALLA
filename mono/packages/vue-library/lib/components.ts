@@ -9,7 +9,8 @@ import type { JSX } from 'stencil-library';
 
 
 export const CartComponent = /*@__PURE__*/ defineContainer<JSX.CartComponent>('cart-component', undefined, [
-  'submitCallback'
+  'submitCallback',
+  'headerProps'
 ]);
 
 
@@ -23,7 +24,8 @@ export const CouponComponent = /*@__PURE__*/ defineContainer<JSX.CouponComponent
 
 export const ShippingComponent = /*@__PURE__*/ defineContainer<JSX.ShippingComponent>('shipping-component', undefined, [
   'submitCallback',
-  'backCallback'
+  'backCallback',
+  'headerProps'
 ]);
 
 

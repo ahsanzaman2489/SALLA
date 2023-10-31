@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property         | Attribute | Description | Type       | Default         |
-| ---------------- | --------- | ----------- | ---------- | --------------- |
-| `submitCallback` | --        |             | `Function` | `() => {     }` |
+| Property         | Attribute | Description | Type                                                                               | Default       |
+| ---------------- | --------- | ----------- | ---------------------------------------------------------------------------------- | ------------- |
+| `headerProps`    | --        |             | `{ logo?: "string"; storeName?: "string"; backComponent?: any; page?: string[]; }` | `{}`          |
+| `submitCallback` | --        |             | `Function`                                                                         | `() => {   }` |
 
 
 ## Dependencies
